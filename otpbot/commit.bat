@@ -5,6 +5,7 @@ IF [%1] == [] GOTO noinput
 echo yesinput
 cd wc
 svn commit -m %1
+git commit -am %1
 cd ..
 goto endxx
 
@@ -13,6 +14,7 @@ goto endxx
 echo noinput
 cd wc
 svn commit -m ""
+git commit -am ""
 cd ..
 goto end
 
