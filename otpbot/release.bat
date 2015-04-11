@@ -1,5 +1,8 @@
 @echo off
 
+exit
+REM as we will be transferring to github, this release process is outdated.
+
 call commit "***Automatic Release process started - commiting any unsubmitted changes first"
 
 rd /S /Q C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release

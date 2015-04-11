@@ -2,7 +2,7 @@
 #AutoIt3Wrapper_icon=host.ico
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=n
-#AutoIt3Wrapper_Res_Fileversion=2.1.0.62
+#AutoIt3Wrapper_Res_Fileversion=2.1.0.63
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_Language=1033
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -349,10 +349,10 @@ Func buttonUpdateForceClick()
 	update()
 EndFunc
 Func buttonReportClick()
-	ShellExecute("http://code.google.com/p/otpbot/issues/entry")
+	ShellExecute("https://github.com/otp22/IRC/issues")
 EndFunc
 Func buttonVisitClick()
-	ShellExecute("http://code.google.com/p/otpbot")
+	ShellExecute("https://github.com/otp22/IRC/tree/master/otpbot")
 EndFunc
 Func radioClick()
 	Global $timerLog
@@ -403,7 +403,7 @@ EndFunc   ;==>kill
 Func update()
 	_OtpHost_flog('Updating...')
 	l("UPDATING")
-	kill('Updating to r' & $RemoteVer & '... [ Details: http://code.google.com/p/otpbot/source/list ]')
+	kill('Updating to r' & $RemoteVer & '... [ Details: https://github.com/otp22/IRC/commits/master ]')
 	ProcessClose('otpcfg.exe')
 	ProcessClose('otpxor.exe')
 	ProcessClose('otpnato.exe')
@@ -442,10 +442,10 @@ EndFunc   ;==>updatefile
 
 
 Func look($file, $revision)
-	Return InetGetSize("http://otpbot.googlecode.com/svn/trunk/" & $file & "?r=" & Int($revision))
+	Return InetGetSize("https://raw.githubusercontent.com/otp22/IRC/master/otpbot/WC/" & $file & "?r=" & Int($revision),1+2)
 EndFunc   ;==>look
 Func Get($file, $revision)
-	Local $r = InetGet("http://otpbot.googlecode.com/svn/trunk/" & $file & "?r=" & Int($revision), @ScriptDir & '\' & $file)
+	Local $r = InetGet("https://raw.githubusercontent.com/otp22/IRC/master/otpbot/WC/" & $file & "?r=" & Int($revision), @ScriptDir & '\' & $file,1+2)
 EndFunc   ;==>get
 
 
@@ -488,7 +488,7 @@ EndFunc   ;==>check
 
 Func remver()
 	;http://otpbot.googlecode.com/svn/trunk/
-	Local $b = InetRead("http://otpbot.googlecode.com/svn/trunk/Release.ver?random="&Random(), 1)
+	Local $b = InetRead("https://raw.githubusercontent.com/otp22/IRC/master/otpbot/WC/Release.ver?random="&Random(), 1+2)
 	Local $e = @error
 	Local $s = BinaryToString($b)
 	l($b & @CRLF & $s & @CRLF)
