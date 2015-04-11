@@ -5,7 +5,6 @@
 #AutoIt3Wrapper_Res_Fileversion=2.1.0.62
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_Language=1033
-#AutoIt3Wrapper_Res_requestedExecutionLevel=requireAdministrator
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 
 #include <GuiEdit.au3>

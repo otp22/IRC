@@ -107,13 +107,14 @@ Func __HTTP_Transfer(ByRef $aReq, ByRef $sRecv_Out, $limit = 0, $timeout=0)
 ;Call($_HTTP_Event_Debug,"HTTP: SConnection error="&@error&" ("&Hex(@error)&") inetreadmode="&$_INETREAD_MODE)
 	Local $ts=TimerInit()
 	While $SOCK <> -1
-		Local $recv = _TCPRecv($SOCK, 50000, 1)
+		Local $recv = _TCPRecv($SOCK, 50000,1)
 		If @error <> 0 Then $error = @error
 		If $timeout > 0 And TimerDiff($ts)>$timeout Then $error=0xB33F
 		If $limit > 0 And StringLen($sRecv_Out) > $limit Then $error = 0xBEEF
-		If IsBinary($recv) Then $recv = BinaryToString($recv)
+		If IsBinary($recv) Then $recv = BinaryToString($recv,1)
 		$sRecv_Out &= $recv
 		If $error <> 0 Then
+			;MsgBox(0,0,$error)
 			;MsgBox(0,0,$error)
 			If $error<>-1 And $error<>0xB33F And $error<>0xBEEF Then _HTTP_ErrorEx($aReq,$addr,$SOCK,$error,'ReceiveResponseLoop',$sRecv_Out)
 			;If $SOCK<>-1 Then TCPCloseSocket($SOCK)
