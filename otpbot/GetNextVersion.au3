@@ -11,6 +11,7 @@ $cur=ver($txt)
 $nxt=Int($cur)+1
 $txt="0:"&$nxt&"M ### NOTE: This is an interval version file, it does not represent a revision number."
 
+MsgBox(0,0,$txt)
 ConsoleWrite($txt)
 Exit
 
