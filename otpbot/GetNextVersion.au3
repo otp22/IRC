@@ -7,12 +7,21 @@
 If $CmdLine[0]<1 Then Exit
 
 $txt=FileRead($CmdLine[1])
+$e=@error
 $cur=ver($txt)
 $nxt=Int($cur)+1
+
+MsgBox(0,0,'['&$CmdLine[1]&']'&@CRLF&"["&$cur&"]"&@CRLF&$txt&@CRLF&$e&@CRLF&@extended&@CRLF&FileGetSize($CmdLine[1]))
+
 $txt="0:"&$nxt&"M ### NOTE: This is an interval version file, it does not represent a revision number."
 
-;MsgBox(0,0,$txt)
+
 ConsoleWrite($txt)
+
+FileDelete($CmdLine[1])
+Sleep(1000)
+FileWrite($CmdLine[1],$txt)
+
 Exit
 
 Func ver($s)
