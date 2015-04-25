@@ -19,7 +19,7 @@ $txt="0:"&$nxt&"M ### NOTE: This is an interval version file, it does not repres
 ConsoleWrite($txt)
 
 FileDelete($CmdLine[1])
-Sleep(1000)
+Sleep(500)
 FileWrite($CmdLine[1],$txt)
 
 Exit
