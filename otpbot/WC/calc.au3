@@ -177,7 +177,7 @@ Func _Calc_EvaluateScript($s)
 	Return SetError(0,0,$ret)
 EndFunc
 
-Func _Calc_Evaluate($s,$fmtstyle='default')
+Func _Calc_Evaluate($s,$fmtstyle='default',$allowScript=True)
 	Local $style=$ArrayFmt_Default
 	If $fmtstyle='quick' Then $style=$ArrayFmt_Quick
 	If $fmtstyle='full' Then $style=$ArrayFmt_Full
@@ -193,7 +193,7 @@ Func _Calc_Evaluate($s,$fmtstyle='default')
 
 
 	Local $ret=""
-	If StringInStr($san,";;")>0 Then
+	If $allowScript And StringInStr($san,";;")>0 Then
 		$ret = _Calc_EvaluateScript(StringReplace($s,';;',@CRLF))
 	Else
 		$ret = _Calc_EvaluateValue($s)
