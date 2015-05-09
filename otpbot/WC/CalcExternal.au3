@@ -34,7 +34,7 @@ Func _Calc_External_Write()
 EndFunc
 Func _Calc_External_Read()
 	If FileGetSize($_Calc_External_Outfile)=0 Then Return ""
-	Local $v=FileRead($_Calc_External_Outfile,1000)
+	Local $v=FileRead($_Calc_External_Outfile,4096)
 	If IsBinary($v) Then $v=BinaryToString($v)
 	Return $v
 EndFunc

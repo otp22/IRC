@@ -458,12 +458,12 @@ Func TryCommandFunc($who, $where, $what, ByRef $acmd)
 			$expression &= _Calc_MakeLiteral($acmd[$i + 1])
 		Next
 		$expression &= ')'
-		$ret = _Calc_Evaluate($expression)
+		$ret = _Calc_Evaluate($expression,'none')
 		$err = @error
 		$ext = @extended
 		If $err = 3 Then; no simple whitelisted function exists - try a sanitized Calculate expression!
 			Local $expression = StringTrimLeft($what, 1)
-			$ret = _Calc_Evaluate($expression)
+			$ret = _Calc_Evaluate($expression,'none')
 			$err = @error
 			$ext = @extended
 		EndIf
