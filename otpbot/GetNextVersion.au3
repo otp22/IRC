@@ -11,7 +11,7 @@ $e=@error
 $cur=ver($txt)
 $nxt=Int($cur)+1
 
-MsgBox(0,0,'['&$CmdLine[1]&']'&@CRLF&"["&$cur&"]"&@CRLF&$txt&@CRLF&$e&@CRLF&@extended&@CRLF&FileGetSize($CmdLine[1]))
+;MsgBox(0,0,'['&$CmdLine[1]&']'&@CRLF&"["&$cur&"]"&@CRLF&$txt&@CRLF&$e&@CRLF&@extended&@CRLF&FileGetSize($CmdLine[1]))
 
 $txt="0:"&$nxt&"M ### NOTE: This is an interval version file, it does not represent a revision number."
 

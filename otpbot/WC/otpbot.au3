@@ -4,7 +4,7 @@
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_Description=OTP22 Utility Bot
-#AutoIt3Wrapper_Res_Fileversion=6.9.5.244
+#AutoIt3Wrapper_Res_Fileversion=6.9.5.245
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_LegalCopyright=Crashdemons
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -534,7 +534,7 @@ Func FilterText($s)
 	Local $o = ''
 	For $i = 1 To StringLen($s)
 		Local $c = StringMid($s, $i, 1)
-		If Asc($c) < 0x09 Then $c = ' '
+		If Asc($c) < 0x09 And Asc($c) <> 0x03  Then $c = ' '
 		$o &= $c
 	Next
 	Return $o
