@@ -47,7 +47,7 @@ Opt('TrayOnEventMode', 1)
 
 
 #Region ;------------CONFIG
-Global $LocalTestINI=0
+Global $LocalTestINI=1
 Global $TestMode = 0
 Global $SERV = Get("server", "irc.freenode.net", "config")
 Global $PORT = Get("port", 6667, "config")
