@@ -4,9 +4,9 @@ IF [%1] == [] GOTO noinput
 :yesinput
 echo yesinput
 cd wc
-svn commit -m %1
-git commit -am %1
-git push
+REM svn commit -m %1
+"C:\Program Files (x86)\Git\bin\git.exe" commit -am %1
+"C:\Program Files (x86)\Git\bin\git.exe" push
 cd ..
 goto endxx
 
@@ -14,9 +14,9 @@ goto endxx
 :noinput
 echo noinput
 cd wc
-svn commit -m ""
-git commit -am ""
-git push
+REM svn commit -m ""
+"C:\Program Files (x86)\Git\bin\git.exe" commit -am ""
+"C:\Program Files (x86)\Git\bin\git.exe" push
 cd ..
 goto end
 
