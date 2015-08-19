@@ -294,6 +294,3 @@ Func _Base64Decode($s_CypherText, $s_ProgressTitle = '')
 	;DONE!
 	Return $s_Out
 EndFunc   ;==>_Base64Decode
-
-
-ConsoleWrite(_Base64Decode('dGVzdCB4')&@CRLF)

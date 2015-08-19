@@ -57,10 +57,10 @@ EndFunc   ;==>pastebindecode
 
 
 Func decodebin($message, $key = "elpaso.bin", $autocorrect=1)
-	ConsoleWrite("decodebin" & @CRLF)
+	;ConsoleWrite("decodebin" & @CRLF)
 	$message = StringStripWS($message, 1 + 2 + 4)
 	$bytes = Trans2Bytes($message)
-	$offset = StringRegExpReplace($message, "^(?s).*?\soffset\s(\d+).*$", "\1")
+	$offset = StringRegExpReplace($message, "^(?s).*?\s[oO]ffset\s(\d+).*$", "\1")
 	If @extended = 0 Then Return "I need an Offset at the end of your message. Like: 11 170 2 offset 50"
 	$offset = Int($offset)
 
@@ -79,8 +79,8 @@ Func decodebin($message, $key = "elpaso.bin", $autocorrect=1)
 	;Return StringFormat("C:\Users\Crash\Desktop\otp22\otpdox\OtpXor\Release\OtpXor.exe e %s %s %s %s",$key,$in,$offset,$out)
 
 	Local $run = StringFormat('"%s" %s "%s" "%s" %s "%s" > "%s"', $exe, $mode, $key, $in, $offset, $out, $dbg)
-	ConsoleWrite("Run: " & $run)
-	ConsoleWrite(@CRLF)
+	;ConsoleWrite("Run: " & $run)
+	;ConsoleWrite(@CRLF)
 	;ConsoleWrite("CWD: "&@WorkingDir&@CRLF))
 	;_RunDos($run)
 	RunWait($run, @WorkingDir, @SW_HIDE)
