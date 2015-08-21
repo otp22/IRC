@@ -5,6 +5,6 @@ echo "returned"
 
 GetNextVersion C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\WC\Release.ver
 
-commit "***Manual release performed - no archive generated"
+commit "***Manual release performed"
 exit /B
 

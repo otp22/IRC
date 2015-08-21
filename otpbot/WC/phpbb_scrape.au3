@@ -128,6 +128,7 @@ Func phpbb_scrape_author($html)
 	Local $sName=StringRegExpReplace($sHTML_Name,'(?s).*?<b>(.*?)</b>.*',"\1")
 	If @extended=0 Then Return SetError(2,0,'')
 	$sName=StringStripWS($sName,1+2+4)
+	$sName=StringRegexpReplace($sName,'<[^>]*>','');strip most tags from author name
 	Return $sName
 EndFunc
 Func phpbb_scrape_authors($html)
@@ -142,6 +143,7 @@ Func phpbb_scrape_authors($html)
 		;ConsoleWrite('   '&$aHTML_Names[$i]&@CRLF)
 		$aHTML_Names[$i]=StringStripWS($aHTML_Names[$i],1+2+4)
 		;ConsoleWrite('      '&$aHTML_Names[$i]&@CRLF)
+		$aHTML_Names[$i]=StringRegexpReplace($aHTML_Names[$i],'<[^>]*>','');strip most tags from author name
 	Next
 	Return $aHTML_Names
 EndFunc
