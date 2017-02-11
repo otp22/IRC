@@ -5,8 +5,8 @@ IF [%1] == [] GOTO noinput
 echo yesinput
 cd wc
 REM svn commit -m %1
-"C:\Program Files (x86)\Git\bin\git.exe" commit -am %1
-"C:\Program Files (x86)\Git\bin\git.exe" push
+git commit -am %1
+git push
 cd ..
 goto endxx
 
@@ -15,8 +15,8 @@ goto endxx
 echo noinput
 cd wc
 REM svn commit -m ""
-"C:\Program Files (x86)\Git\bin\git.exe" commit -am ""
-"C:\Program Files (x86)\Git\bin\git.exe" push
+git commit -am ""
+git push
 cd ..
 goto end
 

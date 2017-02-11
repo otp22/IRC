@@ -11,9 +11,9 @@ del C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release\Release.zip
 del C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release\Release.txt
 del C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release\Release.ver
 del C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\WC\Release.ver
-svnversion C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release > C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release\Release.ver
-svnversion C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release > C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\WC\Release.ver
-rd /S /Q C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release\.svn
+REM svnversion C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release > C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release\Release.ver
+REM svnversion C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release > C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\WC\Release.ver
+REM rd /S /Q C:\Users\Crash\Desktop\otp22\code\IRC\otpbot\Release\.svn
 
 
 :releasetxt

@@ -264,7 +264,8 @@ EndFunc   ;==>Process_HostCmd
 Func Process_Message_Internal($what)
 	Return Process_Message('', '', $what)
 EndFunc
-Func Process_Message($who, $where, $what); called by Process() which parses IRC commands; if you return a string, Process() will form a reply.
+Func Process_Message($who, $where, $what,$nCalls=0); called by Process() which parses IRC commands; if you return a string, Process() will form a reply.
+	If StringRight($who,3)='bot' Then Return ''; don't reply to bots.
 	Local $isPM = ($where = $NICK)
 	Local $isChannel = (StringLeft($where, 1) = '#')
 	Local $isCommand = (StringLeft($what, 1) = $CommandChar)
@@ -315,7 +316,7 @@ Func Process_Message($who, $where, $what); called by Process() which parses IRC 
 			Case 'littlemissouri', 'nd', 'northdakota'
 				Return pastebindecode($what, 'littlemissouri.bin')
 			Case Else;command functions!
-				Return TryCommandFunc($who, $where, $what, $params); looks for a COMMAND_namehere() function with the right number of parameters
+				Return TryCommandFunc($who, $where, $what, $params,$nCalls); looks for a COMMAND_namehere() function with the right number of parameters
 		EndSwitch
 	EndIf
 	Return ''
@@ -413,11 +414,12 @@ EndFunc   ;==>COMMAND_botupdate
 Func COMMAND_test($a = "default", $b = "default", $c = "default")
 	Return "This is a test command function. Params: a=" & $a & " b=" & $b & " c=" & $c
 EndFunc   ;==>COMMAND_test
-Func TryCommandFunc($who, $where, $what, ByRef $acmd)
+Func TryCommandFunc($who, $where, $what, ByRef $acmd, $nCalls=0)
 	Local $paramn = UBound($acmd) - 2
 	Local $paramstr = StringTrimLeft($what, StringLen($acmd[1]) + 1)
 	If Not (StringLeft($what, 1) == $CommandChar) Then Return ""
 	If $paramn < 0 Then Return "Error processing command."
+	If $nCalls > 10 Then Return "Recursive command detected, execution terminated."
 	Local $ret = ""
 	Local $err = 0xDEAD
 	Local $ext = 0xBEEF
@@ -474,7 +476,7 @@ Func TryCommandFunc($who, $where, $what, ByRef $acmd)
 		If $err=0 Then
 			$exec=_Alias_MacroReplace($exec,$paramstr,_Alias__ArrayElement($acmd,2),_Alias__ArrayElement($acmd,3),_Alias__ArrayElement($acmd,4),_Alias__ArrayElement($acmd,5))
 			If StringLeft($exec,1)<>$CommandChar Then $exec=$CommandChar&$exec
-			Return Process_Message($who, $where, $exec)
+			Return Process_Message($who, $where, $exec,$nCalls+1)
 		EndIf
 	EndIf
 #cs

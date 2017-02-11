@@ -30,6 +30,10 @@ Global $dialer_reportfunc = ''
 
 Global $dial_event = ''
 
+Global $otp22_exclusionperiod=5*60*1000
+Global $otp22_exclusiontimer=TimerInit()
+
+
 
 Global $dialer_numbers[9]=[ _
 "+1 202-999-3335", _
@@ -218,6 +222,7 @@ Func otp22_dialler_report()
 	If Not $dialer_enable Then Return
 	otp22_getentries()
 	Local $ret = otp22_checknew()
+	If TimerDiff($otp22_exclusiontimer)<$otp22_exclusionperiod Then Return
 	If StringLen($ret) Then Call($dialer_reportfunc, $ret)
 EndFunc   ;==>otp22_dialler_report
 
