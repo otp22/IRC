@@ -503,7 +503,7 @@ EndFunc
 Func PRIVMSG($where, $what)
 	$what = StringStripCR(FilterText($what));not stripping LFs because of multiline support
 	$what = StringStripWS($what, 1 + 2);leading/trailing whitespace
-	If StringLen($what) = 0 Then $what = "ERROR: I tried to send a blank message. Report this to https://code.google.com/p/otpbot/issues/entry along with the input used."
+	If StringLen($what) = 0 Then $what = "ERROR: I tried to send a blank message. Report this to https://github.com/otp22/IRC/issues along with the input used."
 
 
 	;ConsoleWrite(StringLeft($what,1)&@CRLF)
