@@ -4,7 +4,7 @@
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_Description=OTP22 Utility Bot
-#AutoIt3Wrapper_Res_Fileversion=6.9.5.248
+#AutoIt3Wrapper_Res_Fileversion=6.9.5.249
 #AutoIt3Wrapper_Res_Fileversion_AutoIncrement=y
 #AutoIt3Wrapper_Res_LegalCopyright=Crashdemons
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
@@ -265,6 +265,7 @@ Func Process_Message_Internal($what)
 	Return Process_Message('', '', $what)
 EndFunc
 Func Process_Message($who, $where, $what,$nCalls=0); called by Process() which parses IRC commands; if you return a string, Process() will form a reply.
+	If StringLeft($who,4)='link' Then Return ''; don't reply to bots.
 	If StringRight($who,3)='bot' Then Return ''; don't reply to bots.
 	Local $isPM = ($where = $NICK)
 	Local $isChannel = (StringLeft($where, 1) = '#')
@@ -496,12 +497,20 @@ EndFunc   ;==>SendPrimaryChannel
 
 Func PRIVMSGRAW($where,$what)
 	If StringLeft($where,1) = '#' Then _Logger_Append($where,$NICK, $what);log the bot's own posts! derp
+
 	Cmd("PRIVMSG " & $where & " :" & $what)
 EndFunc
 Func PRIVMSG($where, $what)
 	$what = StringStripCR(FilterText($what));not stripping LFs because of multiline support
 	$what = StringStripWS($what, 1 + 2);leading/trailing whitespace
 	If StringLen($what) = 0 Then $what = "ERROR: I tried to send a blank message. Report this to https://code.google.com/p/otpbot/issues/entry along with the input used."
+
+
+	;ConsoleWrite(StringLeft($what,1)&@CRLF)
+	;ConsoleWrite(StringRegExp(StringLeft($what,1),"^[^a-zA-Z0-9]$")&@CRLF)
+	If StringRegExp(StringLeft($what,1),"^[^a-zA-Z0-9]$")==1 Then $what=Chr(0xA0)&$what
+
+
 	Local $lenMax = 495 - StringLen($NICK & $USERNAME & $HOSTNAME & $where);512 - (":" + nick + "!" + user + "@" + host + " PRIVMSG " + channel + " :" + CR + LF) == 496 - nick - user - host - channel
 	Local $lenMsg = StringLen($what)
 	Local $notifier = "[type " & $CommandChar & "more]"
